@@ -838,10 +838,6 @@
               <label for="strategicImpact">12. كيف سيجعل هذا المشروع حياة سكان الرياض أفضل أو يدعم اقتصاد المدينة؟</label>
               <textarea id="strategicImpact" name="strategicImpact" placeholder="اشرح الأثر المتوقع بشكل مباشر وواضح." required></textarea>
             </div>
-            <div class="field">
-              <label for="keyMessage">13. ما هي المعلومة الأساسية التي ترتكز خطة التسويق على أساسها؟</label>
-              <textarea id="keyMessage" name="keyMessage" placeholder="اكتب الرسالة الأساسية التي يجب أن تبقى في ذهن الجمهور." required></textarea>
-            </div>
           </div>
         </section>
 
@@ -855,6 +851,10 @@
             </div>
           </div>
           <div class="fields">
+            <div class="field">
+              <label for="keyMessage">13. ما هي المعلومة الأساسية التي ترتكز خطة التسويق على أساسها؟</label>
+              <textarea id="keyMessage" name="keyMessage" placeholder="اكتب الرسالة الأساسية التي يجب أن تبقى في ذهن الجمهور." required></textarea>
+            </div>
             <div class="field">
               <label for="supportingFacts">14. قدم 2-3 حقائق تثبت نجاح المشروع</label>
               <textarea id="supportingFacts" name="supportingFacts" placeholder="قدم حقائق ومعلومات يمكن مشاركتها على المنصات التواصل من شأنها أن تدعم الرسالة الأساسية للحملة" required></textarea>
@@ -1155,7 +1155,7 @@
       });
 
       const measureWrap = document.createElement('div');
-      measureWrap.style.position = 'fixed';
+      measureWrap.style.position = 'absolute';
       measureWrap.style.left = '-99999px';
       measureWrap.style.top = '0';
       measureWrap.style.width = '194mm';
@@ -1165,7 +1165,8 @@
       measureWrap.appendChild(clone);
       document.body.appendChild(measureWrap);
 
-      const contentHeightMm = Math.max(160, Math.ceil((measureWrap.getBoundingClientRect().height * 25.4) / 96) - 6);
+      const contentHeightPx = measureWrap.scrollHeight;
+      const contentHeightMm = Math.max(60, Number((((contentHeightPx * 25.4) / 96) - 2).toFixed(2)));
       document.body.removeChild(measureWrap);
 
       const baseStyles = document.querySelector('style').textContent;
@@ -1178,27 +1179,29 @@
   <title>تحديث نموذج ملخص المبادرة</title>
   <style>
     ${baseStyles}
-    @page { size: 210mm ${contentHeightMm}mm; margin: 0; }
-    html, body { background: #fff !important; height: auto; overflow: hidden; }
-    body { min-height: auto; margin: 0; }
+    @page { size: A4; margin: 15mm; }
+    html, body { background: #fff !important; height: auto; overflow: visible; margin: 0; padding: 0; }
     body::before, .summary, .actions, .bottom-actions, .toast { display: none !important; }
-    .shell { width: 100%; margin: 0; display: block; padding: 8mm; box-sizing: border-box; break-after: avoid; page-break-after: avoid; }
-    .panel { background: #f7fbff; border: 0; box-shadow: none; padding: 0; break-after: avoid; page-break-after: avoid; }
-    .topbar { margin-bottom: 10px; }
-    .brand-logo { width: 160px; margin-bottom: 10px; }
-    h2 { font-size: 24px; }
-    #questionnaire { display: block; }
-    .section { margin-bottom: 10px; padding: 14px; border-radius: 14px; break-inside: auto; background: #edf4fa; border: 1px solid #b8cfe0; }
-    .section-header { margin-bottom: 10px; }
-    .section-number { width: 28px; height: 28px; border-radius: 8px; font-size: 14px; background: #d6e7f3; color: #134668; }
+    .shell { width: 100%; height: auto; margin: 0; display: block; padding: 0; box-sizing: border-box; overflow: visible; break-inside: auto; page-break-inside: auto; }
+    .panel { background: #fff; border: 0; box-shadow: none; padding: 0; break-inside: auto; page-break-inside: auto; }
+    .topbar { margin-bottom: 20px; break-after: avoid; page-break-after: avoid; }
+    .brand-logo { width: 180px; margin-bottom: 20px; display: block; }
+    h2 { font-size: 26px; margin-bottom: 20px; break-after: avoid; page-break-after: avoid; }
+    #questionnaire { display: block; break-inside: auto; page-break-inside: auto; }
+    .section { margin-bottom: 20px; padding: 20px; border-radius: 14px; break-inside: auto; page-break-inside: auto; background: #fff; border: 1px solid #eef3f7; }
+    .section:first-of-type { break-before: avoid; page-break-before: avoid; }
+    .section:last-child { margin-bottom: 0; }
+    .fields .field { break-inside: avoid; page-break-inside: avoid; }
+    .section-header { margin-bottom: 20px; }
+    .section-number { width: 32px; height: 32px; border-radius: 8px; font-size: 16px; background: #d6e7f3; color: #134668; }
     .section-badge, .field-note, .preview, .lead, .stats, .progress-wrap, .eyebrow { display: none !important; }
-    .fields { gap: 10px; }
-    .field.two-col { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-    label { margin-bottom: 4px; font-size: 12px; }
-    input[type="text"], input[type="date"], select, textarea { border-radius: 10px; padding: 8px 10px; font-size: 12px; }
-    textarea { min-height: 72px; }
-    .choice span, .check span { padding: 8px; border-radius: 10px; font-size: 12px; background: #ffffff; border-color: #b8cfe0; }
-    .choice input:checked + span, .check input:checked + span { border-color: #3b729c; background: #dcebf6; }
+    .fields { gap: 16px; }
+    .field.two-col { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    label { margin-bottom: 6px; font-size: 14px; font-weight: 700; }
+    input[type="text"], input[type="date"], select, textarea { border-radius: 12px; padding: 12px 14px; font-size: 14px; border-color: #b8cfe0; background: #f9fcff; }
+    textarea { min-height: 90px; }
+    .choice span, .check span { padding: 10px; border-radius: 12px; font-size: 13px; background: #f9fcff; border-color: #b8cfe0; font-weight: 600; }
+    .choice input:checked + span, .check input:checked + span { border-color: #3b729c; background: #e8f3fa; }
   </style>
 </head>
 <body>
