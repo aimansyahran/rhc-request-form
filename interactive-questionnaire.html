@@ -659,7 +659,7 @@
     <aside class="summary">
       <div class="eyebrow">ملخص مبادرة تفاعلي</div>
       <h1>نموذج من صفحة واحدة</h1>
-      <p class="lead">صفحة واحدة تجمع 14 سؤالا بصيغة واضحة وسريعة التعبئة، مع حفظ تلقائي ومعاينة مختصرة يمكن نسخها.</p>
+      <p class="lead">صفحة واحدة تجمع 15 سؤالا بصيغة واضحة وسريعة التعبئة، مع حفظ تلقائي ومعاينة مختصرة يمكن نسخها.</p>
 
       <div class="progress-wrap">
         <div class="progress-labels">
@@ -677,7 +677,7 @@
           <span>إجابات مكتملة</span>
         </div>
         <div class="stat">
-          <strong>14</strong>
+          <strong>15</strong>
           <span>إجمالي الأسئلة</span>
         </div>
       </div>
@@ -709,7 +709,7 @@
               <div class="section-number">1</div>
               <div>
                 <h3>الأساسيات</h3>
-                <p>اسم صاحب الطلب والإدارة / القسم واسم المشروع واسم الشركة التابعة والخلفية المختصرة.</p>
+                <p>اسم صاحب الطلب والإدارة / القسم واسم المشروع واسم الشركة التابعة والخلفية المختصرة والقطاع المدعوم.</p>
               </div>
             </div>
           </div>
@@ -732,10 +732,23 @@
             </div>
             <div class="field">
               <div class="label-row">
-                <label for="projectBackground">5. ما هو المشروع؟ ولماذا نقوم به الآن؟</label>
+                <label for="projectBackground">5. ما هو المشروع؟ ولماذا نقوم به الآن و كيف يرتبط المشروع باستراتيجية الرياض القابضة ورؤيتها؟</label>
                 <span class="field-note">خلفية المشروع</span>
               </div>
               <textarea id="projectBackground" name="projectBackground" placeholder="اكتب وصفا مختصرا يوضح فكرة المشروع وسبب إطلاقه في الوقت الحالي." required></textarea>
+            </div>
+            <div class="field">
+              <div class="label-row">
+                <label for="supportedSector">6. ما هو القطاع الذي يدعمه هذا المشروع؟</label>
+              </div>
+              <select id="supportedSector" name="supportedSector" required>
+                <option value="">اختر القطاع</option>
+                <option value="الأسواق العامة">الأسواق العامة</option>
+                <option value="مشاريع النفع العام">مشاريع النفع العام</option>
+                <option value="المناطق العامة و الحدائق">المناطق العامة و الحدائق</option>
+                <option value="مراكز التسوق و التجزئة">مراكز التسوق و التجزئة</option>
+                <option value="اللوجستيات و التنقل">اللوجستيات و التنقل</option>
+              </select>
             </div>
           </div>
         </section>
@@ -753,7 +766,7 @@
           <div class="fields">
             <div class="field two-col">
               <div>
-                <label for="contractDate">6. تاريخ توقيع العقد</label>
+                <label for="contractDate">7. تاريخ توقيع العقد</label>
                 <input id="contractDate" name="contractDate" type="date">
               </div>
               <div>
@@ -763,7 +776,7 @@
             </div>
             <div class="field">
               <div class="label-row">
-                <label>7. المرحلة الحالية</label>
+                <label>8. المرحلة الحالية</label>
                 <span class="field-note">اختر واحدة</span>
               </div>
               <div class="choice-grid">
@@ -789,7 +802,7 @@
           <div class="fields">
             <div class="field">
               <div class="label-row">
-                <label for="goalPillar">8. ما هو هدفنا؟</label>
+                <label for="goalPillar">9. ما هو هدفنا؟</label>
                 <span class="field-note">اختر الركيزة المناسبة</span>
               </div>
               <select id="goalPillar" name="goalPillar" required>
@@ -801,11 +814,11 @@
               </select>
             </div>
             <div class="field">
-              <label for="strategicImpact">9. كيف سيجعل هذا المشروع حياة سكان الرياض أفضل أو يدعم اقتصاد المدينة؟</label>
+              <label for="strategicImpact">10. كيف سيجعل هذا المشروع حياة سكان الرياض أفضل أو يدعم اقتصاد المدينة؟</label>
               <textarea id="strategicImpact" name="strategicImpact" placeholder="اشرح الأثر المتوقع بشكل مباشر وواضح." required></textarea>
             </div>
             <div class="field">
-              <label for="keyMessage">10. ما هي المعلومة الأساسية التي ترتكز خطة التسويق على أساسها؟</label>
+              <label for="keyMessage">11. ما هي المعلومة الأساسية التي ترتكز خطة التسويق على أساسها؟</label>
               <textarea id="keyMessage" name="keyMessage" placeholder="اكتب الرسالة الأساسية التي يجب أن تبقى في ذهن الجمهور." required></textarea>
             </div>
           </div>
@@ -823,7 +836,7 @@
           </div>
           <div class="fields">
             <div class="field">
-              <label for="supportingFacts">11. قدم 2-3 حقائق تثبت نجاح المشروع</label>
+              <label for="supportingFacts">12. قدم 2-3 حقائق تثبت نجاح المشروع</label>
               <textarea id="supportingFacts" name="supportingFacts" placeholder="قدم حقائق ومعلومات يمكن مشاركتها على المنصات التواصل من شأنها أن تدعم الرسالة الأساسية للحملة" required></textarea>
             </div>
           </div>
@@ -842,7 +855,7 @@
           <div class="fields">
             <div class="field">
               <div class="label-row">
-                <label>12. هل يتطلب المشروع دعما من العلاقات العامة؟</label>
+                <label>13. هل يتطلب المشروع دعما من العلاقات العامة؟</label>
                 <span class="field-note">خبر صحفي أو توقيع أو متحدث رسمي</span>
               </div>
               <div class="choice-grid">
@@ -854,7 +867,7 @@
              </div>
             <div class="field">
               <div class="label-row">
-                <label>13. هل تحتاج إلى إعلانات ممولة على منصات التواصل؟</label>
+                <label>14. هل تحتاج إلى إعلانات ممولة على منصات التواصل؟</label>
                  <span class="field-note">إعلانات ممولة على وسائل التواصل الاجتماعي</span>
               </div>
               <div class="choice-grid">
@@ -866,7 +879,7 @@
              </div>
             <div class="field">
               <div class="label-row">
-                <label>14. ما المواد المتوفرة حاليا للنشر؟</label>
+                <label>15. ما المواد المتوفرة حاليا للنشر؟</label>
                 <span class="field-note">يمكن اختيار أكثر من عنصر</span>
               </div>
               <div class="checkbox-grid">
@@ -910,6 +923,7 @@
       projectName: 'اسم المشروع',
       companyName: 'اسم الشركة التابعة',
       projectBackground: 'خلفية المشروع',
+      supportedSector: 'القطاع المدعوم',
       timeline: 'الجدول الزمني',
       projectStage: 'المرحلة الحالية',
       goalPillar: 'الهدف',
@@ -954,6 +968,7 @@
         projectName: form.projectName.value.trim(),
         companyName: form.companyName.value.trim(),
         projectBackground: form.projectBackground.value.trim(),
+        supportedSector: form.supportedSector.value,
         contractDate: form.contractDate.value,
         startDate: form.startDate.value,
         projectStage: getRadioValue('projectStage'),
@@ -975,6 +990,7 @@
         state.projectName,
         state.companyName,
         state.projectBackground,
+        state.supportedSector,
         getTimelineValue(),
         state.projectStage,
         state.goalPillar,
@@ -991,13 +1007,14 @@
     function updateProgress() {
       const state = getState();
       const answered = getAnsweredQuestions(state);
-      const percent = Math.round((answered / 14) * 100);
+      const percent = Math.round((answered / 15) * 100);
       progressBar.style.width = `${percent}%`;
       progressText.textContent = `${percent}%`;
       answeredCount.textContent = answered;
 
       const previewEntries = [
         ['projectName', state.projectName],
+        ['supportedSector', state.supportedSector],
         ['timeline', getTimelineValue()],
         ['goalPillar', state.goalPillar],
         ['keyMessage', state.keyMessage],
@@ -1020,6 +1037,7 @@
       form.projectName.value = state.projectName || '';
       form.companyName.value = state.companyName || '';
       form.projectBackground.value = state.projectBackground || '';
+      form.supportedSector.value = state.supportedSector || '';
       form.contractDate.value = state.contractDate || '';
       form.startDate.value = state.startDate || '';
       form.goalPillar.value = state.goalPillar || '';
