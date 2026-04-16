@@ -523,10 +523,17 @@
       html,
       body {
         background: #fff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
       }
 
       body {
         min-height: auto;
+      }
+
+      * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
       }
 
       body::before,
@@ -544,7 +551,7 @@
       }
 
       .panel {
-        background: #fff;
+        background: #f7fbff;
         border: 0;
         box-shadow: none;
         padding: 0;
@@ -572,7 +579,8 @@
         padding: 14px;
         border-radius: 14px;
         break-inside: auto;
-        background: #fff;
+        background: #edf4fa;
+        border: 1px solid #b8cfe0;
       }
 
       .section-header {
@@ -584,6 +592,20 @@
         height: 28px;
         border-radius: 8px;
         font-size: 14px;
+        background: #d6e7f3;
+        color: #134668;
+      }
+
+      .choice input:checked + span,
+      .check input:checked + span {
+        border-color: #3b729c;
+        background: #dcebf6;
+      }
+
+      .choice span,
+      .check span {
+        background: #ffffff;
+        border-color: #b8cfe0;
       }
 
       .section-badge,
@@ -637,7 +659,7 @@
     <aside class="summary">
       <div class="eyebrow">ملخص مبادرة تفاعلي</div>
       <h1>نموذج من صفحة واحدة</h1>
-      <p class="lead">صفحة واحدة تجمع 11 سؤالا بصيغة واضحة وسريعة التعبئة، مع حفظ تلقائي ومعاينة مختصرة يمكن نسخها.</p>
+      <p class="lead">صفحة واحدة تجمع 12 سؤالا بصيغة واضحة وسريعة التعبئة، مع حفظ تلقائي ومعاينة مختصرة يمكن نسخها.</p>
 
       <div class="progress-wrap">
         <div class="progress-labels">
@@ -655,7 +677,7 @@
           <span>إجابات مكتملة</span>
         </div>
         <div class="stat">
-          <strong>11</strong>
+          <strong>12</strong>
           <span>إجمالي الأسئلة</span>
         </div>
       </div>
@@ -687,19 +709,22 @@
               <div class="section-number">1</div>
               <div>
                 <h3>الأساسيات</h3>
-                <p>اسم المشروع والخلفية المختصرة.</p>
+                <p>اسم المشروع واسم الشركة التابعة والخلفية المختصرة.</p>
               </div>
             </div>
-            <div class="section-badge">سؤالان</div>
           </div>
           <div class="fields">
             <div class="field">
-              <label for="projectName">1. اسم المشروع والشركة التابعة</label>
-              <input id="projectName" name="projectName" type="text" placeholder="مثال: مشروع تطوير المرافق - شركة مرافد" required>
+              <label for="projectName">1. اسم المشروع</label>
+              <input id="projectName" name="projectName" type="text" placeholder="مثال: مشروع تطوير المرافق" required>
+            </div>
+            <div class="field">
+              <label for="companyName">2. اسم الشركة التابعة</label>
+              <input id="companyName" name="companyName" type="text" placeholder="مثال: شركة مرافد" required>
             </div>
             <div class="field">
               <div class="label-row">
-                <label for="projectBackground">2. ما هو المشروع؟ ولماذا نقوم به الآن؟</label>
+                <label for="projectBackground">3. ما هو المشروع؟ ولماذا نقوم به الآن؟</label>
                 <span class="field-note">خلفية المشروع</span>
               </div>
               <textarea id="projectBackground" name="projectBackground" placeholder="اكتب وصفا مختصرا يوضح فكرة المشروع وسبب إطلاقه في الوقت الحالي." required></textarea>
@@ -716,16 +741,15 @@
                 <p>الجدول الزمني والمرحلة الحالية.</p>
               </div>
             </div>
-            <div class="section-badge">سؤالان</div>
           </div>
           <div class="fields">
             <div class="field two-col">
               <div>
-                <label for="contractDate">3. تاريخ توقيع العقد</label>
+                <label for="contractDate">4. تاريخ توقيع العقد</label>
                 <input id="contractDate" name="contractDate" type="date">
               </div>
               <div>
-                <label for="startDate">تاريخ انطلاق المشروع</label>
+                <label for="startDate">تاريخ الاعلان المتوقع عن المشروع</label>
                 <input id="startDate" name="startDate" type="date">
               </div>
               <div>
@@ -735,14 +759,14 @@
             </div>
             <div class="field">
               <div class="label-row">
-                <label>4. المرحلة الحالية</label>
+                <label>5. المرحلة الحالية</label>
                 <span class="field-note">اختر واحدة</span>
               </div>
               <div class="choice-grid">
-                <label class="choice"><input type="radio" name="projectStage" value="تشخيص"><span>تشخيص</span></label>
-                <label class="choice"><input type="radio" name="projectStage" value="تحديد"><span>تحديد</span></label>
-                <label class="choice"><input type="radio" name="projectStage" value="تصميم"><span>تصميم</span></label>
-                <label class="choice"><input type="radio" name="projectStage" value="تنفيذ"><span>تنفيذ</span></label>
+                 <label class="choice"><input type="radio" name="projectStage" value="التخطيط"><span>التخطيط</span></label>
+                 <label class="choice"><input type="radio" name="projectStage" value="الاعتماد والموافق"><span>الاعتماد والموافق</span></label>
+                 <label class="choice"><input type="radio" name="projectStage" value="التصميم"><span>التصميم</span></label>
+                 <label class="choice"><input type="radio" name="projectStage" value="التنفيذ"><span>التنفيذ</span></label>
               </div>
             </div>
           </div>
@@ -757,12 +781,11 @@
                 <p>الركيزة والأثر الاستراتيجي.</p>
               </div>
             </div>
-            <div class="section-badge">3 أسئلة</div>
           </div>
           <div class="fields">
             <div class="field">
               <div class="label-row">
-                <label for="goalPillar">5. ما هو هدفنا؟</label>
+                <label for="goalPillar">6. ما هو هدفنا؟</label>
                 <span class="field-note">اختر الركيزة المناسبة</span>
               </div>
               <select id="goalPillar" name="goalPillar" required>
@@ -774,11 +797,11 @@
               </select>
             </div>
             <div class="field">
-              <label for="strategicImpact">6. كيف سيجعل هذا المشروع حياة سكان الرياض أفضل أو يدعم اقتصاد المدينة؟</label>
+              <label for="strategicImpact">7. كيف سيجعل هذا المشروع حياة سكان الرياض أفضل أو يدعم اقتصاد المدينة؟</label>
               <textarea id="strategicImpact" name="strategicImpact" placeholder="اشرح الأثر المتوقع بشكل مباشر وواضح." required></textarea>
             </div>
             <div class="field">
-              <label for="keyMessage">7. ما هي المعلومة الواحدة التي تريد أن يتذكرها الناس عن هذا المشروع؟</label>
+              <label for="keyMessage">8. ما هي المعلومة الواحدة التي تريد أن يتذكرها الناس عن هذا المشروع؟</label>
               <textarea id="keyMessage" name="keyMessage" placeholder="اكتب الرسالة الأساسية التي يجب أن تبقى في ذهن الجمهور." required></textarea>
             </div>
           </div>
@@ -793,12 +816,11 @@
                 <p>حقائق داعمة تبرز نجاح المبادرة.</p>
               </div>
             </div>
-            <div class="section-badge">سؤال واحد</div>
           </div>
           <div class="fields">
             <div class="field">
-              <label for="supportingFacts">8. قدم 2-3 حقائق تثبت نجاح المشروع</label>
-              <textarea id="supportingFacts" name="supportingFacts" placeholder="مثال: عدد المستفيدين، نسبة الإنجاز، المواصفات التقنية، قيمة التوفير..." required></textarea>
+              <label for="supportingFacts">9. قدم 2-3 حقائق تثبت نجاح المشروع</label>
+              <textarea id="supportingFacts" name="supportingFacts" placeholder="قدم حقائق ومعلومات يمكن مشاركتها على المنصات التواصل من شأنها أن تدعم الرسالة الأساسية للحملة" required></textarea>
             </div>
           </div>
         </section>
@@ -812,34 +834,35 @@
                 <p>الاحتياج الإعلامي والترويج والمواد المتوفرة.</p>
               </div>
             </div>
-            <div class="section-badge">3 أسئلة</div>
           </div>
           <div class="fields">
             <div class="field">
               <div class="label-row">
-                <label>9. هل يتطلب المشروع دعما من العلاقات العامة؟</label>
+                <label>10. هل يتطلب المشروع دعما من العلاقات العامة؟</label>
                 <span class="field-note">خبر صحفي أو توقيع أو متحدث رسمي</span>
               </div>
               <div class="choice-grid">
-                <label class="choice"><input type="radio" name="prSupport" value="نعم"><span>نعم</span></label>
-                <label class="choice"><input type="radio" name="prSupport" value="لا"><span>لا</span></label>
-                <label class="choice"><input type="radio" name="prSupport" value="غير محدد"><span>غير محدد</span></label>
-              </div>
-            </div>
+                 <label class="choice"><input type="radio" name="prSupport" value="نعم"><span>نعم</span></label>
+                 <label class="choice"><input type="radio" name="prSupport" value="لا"><span>لا</span></label>
+                 <label class="choice"><input type="radio" name="prSupport" value="غير محدد"><span>غير محدد</span></label>
+                 <label class="choice"><input type="radio" name="prSupport" value="لا اعلم الرجاء الإفادة"><span>لا اعلم الرجاء الإفادة</span></label>
+               </div>
+             </div>
             <div class="field">
               <div class="label-row">
-                <label>10. هل تحتاج إلى إعلانات ممولة على منصات التواصل؟</label>
+                <label>11. هل تحتاج إلى إعلانات ممولة على منصات التواصل؟</label>
                  <span class="field-note">إعلانات ممولة على وسائل التواصل الاجتماعي</span>
               </div>
               <div class="choice-grid">
-                <label class="choice"><input type="radio" name="paidPromotion" value="نعم"><span>نعم</span></label>
-                <label class="choice"><input type="radio" name="paidPromotion" value="لا"><span>لا</span></label>
-                <label class="choice"><input type="radio" name="paidPromotion" value="بحاجة لدراسة"><span>بحاجة لدراسة</span></label>
-              </div>
-            </div>
+                 <label class="choice"><input type="radio" name="paidPromotion" value="نعم"><span>نعم</span></label>
+                 <label class="choice"><input type="radio" name="paidPromotion" value="لا"><span>لا</span></label>
+                 <label class="choice"><input type="radio" name="paidPromotion" value="بحاجة لدراسة"><span>بحاجة لدراسة</span></label>
+                 <label class="choice"><input type="radio" name="paidPromotion" value="لا اعلم الرجاء الإفادة"><span>لا اعلم الرجاء الإفادة</span></label>
+               </div>
+             </div>
             <div class="field">
               <div class="label-row">
-                <label>11. ما المواد المتوفرة حاليا للنشر؟</label>
+                <label>12. ما المواد المتوفرة حاليا للنشر؟</label>
                 <span class="field-note">يمكن اختيار أكثر من عنصر</span>
               </div>
               <div class="checkbox-grid">
@@ -878,7 +901,8 @@
     const storageKey = 'initiative-questionnaire-v1';
 
     const fieldLabels = {
-      projectName: 'اسم المشروع والشركة التابعة',
+      projectName: 'اسم المشروع',
+      companyName: 'اسم الشركة التابعة',
       projectBackground: 'خلفية المشروع',
       timeline: 'الجدول الزمني',
       projectStage: 'المرحلة الحالية',
@@ -922,6 +946,7 @@
     function getState() {
       return {
         projectName: form.projectName.value.trim(),
+        companyName: form.companyName.value.trim(),
         projectBackground: form.projectBackground.value.trim(),
         contractDate: form.contractDate.value,
         startDate: form.startDate.value,
@@ -941,6 +966,7 @@
     function getAnsweredQuestions(state) {
       const answers = [
         state.projectName,
+        state.companyName,
         state.projectBackground,
         getTimelineValue(),
         state.projectStage,
@@ -958,7 +984,7 @@
     function updateProgress() {
       const state = getState();
       const answered = getAnsweredQuestions(state);
-      const percent = Math.round((answered / 11) * 100);
+      const percent = Math.round((answered / 12) * 100);
       progressBar.style.width = `${percent}%`;
       progressText.textContent = `${percent}%`;
       answeredCount.textContent = answered;
@@ -983,6 +1009,7 @@
     function fillState(state) {
       if (!state) return;
       form.projectName.value = state.projectName || '';
+      form.companyName.value = state.companyName || '';
       form.projectBackground.value = state.projectBackground || '';
       form.contractDate.value = state.contractDate || '';
       form.startDate.value = state.startDate || '';
@@ -1087,21 +1114,22 @@
     body { min-height: auto; margin: 0; }
     body::before, .summary, .actions, .bottom-actions, .toast { display: none !important; }
     .shell { width: 100%; margin: 0; display: block; padding: 8mm; box-sizing: border-box; break-after: avoid; page-break-after: avoid; }
-    .panel { background: #fff; border: 0; box-shadow: none; padding: 0; break-after: avoid; page-break-after: avoid; }
+    .panel { background: #f7fbff; border: 0; box-shadow: none; padding: 0; break-after: avoid; page-break-after: avoid; }
     .topbar { margin-bottom: 10px; }
     .brand-logo { width: 160px; margin-bottom: 10px; }
     h2 { font-size: 24px; }
     #questionnaire { display: block; }
-    .section { margin-bottom: 10px; padding: 14px; border-radius: 14px; break-inside: auto; background: #fff; }
+    .section { margin-bottom: 10px; padding: 14px; border-radius: 14px; break-inside: auto; background: #edf4fa; border: 1px solid #b8cfe0; }
     .section-header { margin-bottom: 10px; }
-    .section-number { width: 28px; height: 28px; border-radius: 8px; font-size: 14px; }
+    .section-number { width: 28px; height: 28px; border-radius: 8px; font-size: 14px; background: #d6e7f3; color: #134668; }
     .section-badge, .field-note, .preview, .lead, .stats, .progress-wrap, .eyebrow { display: none !important; }
     .fields { gap: 10px; }
     .field.two-col { grid-template-columns: repeat(3, 1fr); gap: 8px; }
     label { margin-bottom: 4px; font-size: 12px; }
     input[type="text"], input[type="date"], select, textarea { border-radius: 10px; padding: 8px 10px; font-size: 12px; }
     textarea { min-height: 72px; }
-    .choice span, .check span { padding: 8px; border-radius: 10px; font-size: 12px; }
+    .choice span, .check span { padding: 8px; border-radius: 10px; font-size: 12px; background: #ffffff; border-color: #b8cfe0; }
+    .choice input:checked + span, .check input:checked + span { border-color: #3b729c; background: #dcebf6; }
   </style>
 </head>
 <body>
