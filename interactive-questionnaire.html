@@ -748,10 +748,10 @@
             </div>
             <div class="field">
               <div class="label-row">
-                <label for="supportedSector">6. ما هو القطاع الذي يدعمه هذا المشروع؟</label>
+                <label for="supportedSector">6. ما هي المنظومة التي يدعمها هذا المشروع؟</label>
               </div>
               <select id="supportedSector" name="supportedSector" required>
-                <option value="">اختر القطاع</option>
+                <option value="">أختر المنظومة</option>
                 <option value="الأسواق العامة">الأسواق العامة</option>
                 <option value="مشاريع النفع العام">مشاريع النفع العام</option>
                 <option value="المناطق العامة و الحدائق">المناطق العامة و الحدائق</option>
@@ -760,12 +760,18 @@
               </select>
             </div>
             <div class="field">
-              <label for="launchEvent">7. هل يتطلب المشروع تنظيم حفل تدشين أو توقيع؟</label>
-              <input id="launchEvent" name="launchEvent" type="text" required>
+              <label>7. هل يتطلب المشروع تنظيم حفل تدشين أو توقيع؟</label>
+              <div class="choice-grid">
+                <label class="choice"><input type="radio" name="launchEvent" value="نعم"><span>نعم</span></label>
+                <label class="choice"><input type="radio" name="launchEvent" value="لا"><span>لا</span></label>
+              </div>
             </div>
             <div class="field">
-              <label for="mediaCoverage">8. هل المطلوب توفير تغطية تصوير فوتوغرافي أو فيديو؟</label>
-              <input id="mediaCoverage" name="mediaCoverage" type="text" required>
+              <label>8. هل المطلوب توفير تغطية تصوير فوتوغرافي أو فيديو؟</label>
+              <div class="choice-grid">
+                <label class="choice"><input type="radio" name="mediaCoverage" value="نعم"><span>نعم</span></label>
+                <label class="choice"><input type="radio" name="mediaCoverage" value="لا"><span>لا</span></label>
+              </div>
             </div>
           </div>
         </section>
@@ -993,8 +999,8 @@
         companyName: form.companyName.value.trim(),
         projectBackground: form.projectBackground.value.trim(),
         supportedSector: form.supportedSector.value,
-        launchEvent: form.launchEvent.value.trim(),
-        mediaCoverage: form.mediaCoverage.value.trim(),
+        launchEvent: getRadioValue('launchEvent'),
+        mediaCoverage: getRadioValue('mediaCoverage'),
         contractDate: form.contractDate.value,
         startDate: form.startDate.value,
         projectStage: getRadioValue('projectStage'),
@@ -1073,8 +1079,6 @@
       form.companyName.value = state.companyName || '';
       form.projectBackground.value = state.projectBackground || '';
       form.supportedSector.value = state.supportedSector || '';
-      form.launchEvent.value = state.launchEvent || '';
-      form.mediaCoverage.value = state.mediaCoverage || '';
       form.contractDate.value = state.contractDate || '';
       form.startDate.value = state.startDate || '';
       form.goalPillar.value = state.goalPillar || '';
@@ -1085,7 +1089,7 @@
       form.brandVisibility.value = state.brandVisibility || '';
       form.assetsNotes.value = state.assetsNotes || '';
 
-      ['projectStage', 'prSupport', 'paidPromotion'].forEach((name) => {
+      ['launchEvent', 'mediaCoverage', 'projectStage', 'prSupport', 'paidPromotion'].forEach((name) => {
         const value = state[name];
         if (!value) return;
         const input = form.querySelector(`input[name="${name}"][value="${value}"]`);
