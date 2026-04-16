@@ -348,6 +348,19 @@
       font-weight: 500;
     }
 
+    .field-note-pop {
+      display: block;
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(59, 114, 156, 0.22);
+      background: rgba(59, 114, 156, 0.1);
+      color: #134668;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.7;
+    }
+
     input[type="text"],
     input[type="date"],
     select,
@@ -659,7 +672,7 @@
     <aside class="summary">
       <div class="eyebrow">ملخص مبادرة تفاعلي</div>
       <h1>نموذج من صفحة واحدة</h1>
-      <p class="lead">صفحة واحدة تجمع 15 سؤالا بصيغة واضحة وسريعة التعبئة، مع حفظ تلقائي ومعاينة مختصرة يمكن نسخها.</p>
+      <p class="lead">صفحة واحدة تجمع 17 سؤالا بصيغة واضحة وسريعة التعبئة، مع حفظ تلقائي ومعاينة مختصرة يمكن نسخها.</p>
 
       <div class="progress-wrap">
         <div class="progress-labels">
@@ -677,7 +690,7 @@
           <span>إجابات مكتملة</span>
         </div>
         <div class="stat">
-          <strong>15</strong>
+          <strong>17</strong>
           <span>إجمالي الأسئلة</span>
         </div>
       </div>
@@ -890,6 +903,15 @@
               </div>
             </div>
             <div class="field">
+              <label for="partnerInfo">16. في حال وجود شراكة، ما هو اسم الشريك وما هي النبذة التعريفية لنشاطه؟</label>
+              <textarea id="partnerInfo" name="partnerInfo" placeholder="اذكر اسم الشريك ونبذة مختصرة عن نشاطه." required></textarea>
+            </div>
+            <div class="field">
+              <label for="brandVisibility">17. ما هو مستوى الظهور العلامي المطلوب لهذه الشراكة؟</label>
+              <input id="brandVisibility" name="brandVisibility" type="text" required>
+              <span class="field-note-pop">يُرجى تزويدنا بشعار الشريك (على أن يُرسل كملف مستقل عبر البريد الإلكتروني مع هذا النموذج).</span>
+            </div>
+            <div class="field">
               <label for="assetsNotes">ملاحظات إضافية</label>
               <textarea id="assetsNotes" name="assetsNotes" placeholder="أضف أي تفاصيل تساعد فريق المحتوى أو العلاقات العامة."></textarea>
             </div>
@@ -932,6 +954,8 @@
       prSupport: 'دعم العلاقات العامة',
       paidPromotion: 'الترويج الممول',
       assets: 'المواد المتوفرة',
+      partnerInfo: 'معلومات الشريك',
+      brandVisibility: 'مستوى الظهور العلامي',
       assetsNotes: 'ملاحظات إضافية'
     };
 
@@ -978,6 +1002,8 @@
         prSupport: getRadioValue('prSupport'),
         paidPromotion: getRadioValue('paidPromotion'),
         assets: getCheckboxValues('assets'),
+        partnerInfo: form.partnerInfo.value.trim(),
+        brandVisibility: form.brandVisibility.value.trim(),
         assetsNotes: form.assetsNotes.value.trim()
       };
     }
@@ -998,7 +1024,10 @@
         state.supportingFacts,
         state.prSupport,
         state.paidPromotion,
-        state.assets.length ? state.assets.join('، ') : state.assetsNotes
+        state.assets.length ? state.assets.join('، ') : '',
+        state.partnerInfo,
+        state.brandVisibility,
+        state.assetsNotes
       ];
       return answers.filter(Boolean).length;
     }
@@ -1006,7 +1035,7 @@
     function updateProgress() {
       const state = getState();
       const answered = getAnsweredQuestions(state);
-      const percent = Math.round((answered / 15) * 100);
+      const percent = Math.round((answered / 17) * 100);
       progressBar.style.width = `${percent}%`;
       progressText.textContent = `${percent}%`;
       answeredCount.textContent = answered;
@@ -1017,7 +1046,8 @@
         ['timeline', getTimelineValue()],
         ['goalPillar', state.goalPillar],
         ['keyMessage', state.keyMessage],
-        ['assets', state.assets.length ? state.assets.join('، ') : '']
+        ['assets', state.assets.length ? state.assets.join('، ') : ''],
+        ['brandVisibility', state.brandVisibility]
       ].filter(([, value]) => value);
 
       if (!previewEntries.length) {
@@ -1043,6 +1073,8 @@
       form.strategicImpact.value = state.strategicImpact || '';
       form.keyMessage.value = state.keyMessage || '';
       form.supportingFacts.value = state.supportingFacts || '';
+      form.partnerInfo.value = state.partnerInfo || '';
+      form.brandVisibility.value = state.brandVisibility || '';
       form.assetsNotes.value = state.assetsNotes || '';
 
       ['projectStage', 'prSupport', 'paidPromotion'].forEach((name) => {
