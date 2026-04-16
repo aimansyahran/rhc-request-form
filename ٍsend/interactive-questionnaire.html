@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نموذج ملخص المبادرة</title>
+  <style>
+    :root {
+      --bg: rgba(194, 171, 128, 0.1);
+      --paper: rgba(248, 252, 255, 0.88);
+      --ink: #1f1b18;
+      --muted: #6d655e;
+      --line: rgba(59, 114, 156, 0.18);
+      --accent: #3b729c;
+      --accent-strong: #244e70;
+      --ok: #1f7a4d;
+      --shadow: 0 20px 60px rgba(2, 21, 51, 0.12);
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "SOMAR", "SF Arabic", "Noto Naskh Arabic", "Geeza Pro", Tahoma, sans-serif;
+      line-height: 1.75;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top right, rgba(59, 114, 156, 0.16), transparent 24%),
+        radial-gradient(circle at left 20%, rgba(36, 78, 112, 0.08), transparent 20%),
+        linear-gradient(180deg, rgba(194, 171, 128, 0.1) 0%, rgba(194, 171, 128, 0.1) 100%);
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.22;
+      background-image:
+        linear-gradient(rgba(59, 114, 156, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59, 114, 156, 0.07) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.6), transparent 85%);
+    }
+
+    .shell {
+      width: min(1180px, calc(100% - 32px));
+      margin: 32px auto;
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel,
+    .summary {
+      background: var(--paper);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .summary {
+      position: sticky;
+      top: 18px;
+      padding: 24px;
+      overflow: hidden;
+    }
+
+    .summary::after {
+      content: "";
+      position: absolute;
+      inset: auto -40px -50px auto;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(59, 114, 156, 0.16), transparent 70%);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(59, 114, 156, 0.09);
+      color: var(--accent-strong);
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.45;
+      color: #134668;
+    }
+
+    .title-main {
+      display: inline-block;
+      font-size: 1.35em;
+      font-weight: 900;
+      line-height: 1.35;
+      margin-bottom: 4px;
+    }
+
+    h1 {
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+
+    .lead,
+    .meta,
+    .hint,
+    .preview-empty {
+      color: var(--muted);
+    }
+
+    .lead {
+      margin: 0 0 18px;
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .progress-wrap {
+      margin: 24px 0 18px;
+    }
+
+    .progress-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .progress-track {
+      position: relative;
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(59, 114, 156, 0.08);
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 0;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--accent), #6b9fc8);
+      transition: width 0.25s ease;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 20px 0 22px;
+    }
+
+    .stat {
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.45);
+      border: 1px solid rgba(59, 114, 156, 0.08);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 22px;
+      margin-bottom: 4px;
+    }
+
+    .stat span {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .preview {
+      position: relative;
+      z-index: 1;
+      margin-top: 18px;
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+    }
+
+    .preview h3 {
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+
+    .preview-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .preview-item {
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.45);
+      border: 1px solid rgba(59, 114, 156, 0.08);
+    }
+
+    .preview-item strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 6px;
+      color: var(--accent-strong);
+    }
+
+    .preview-item p {
+      margin: 0;
+      line-height: 1.7;
+      font-size: 14px;
+      white-space: pre-wrap;
+    }
+
+    .panel {
+      padding: 28px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+
+    .topbar p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .brand-logo {
+      display: block;
+      width: clamp(180px, 26vw, 260px);
+      height: auto;
+      margin: 0 0 16px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 14px;
+      padding: 12px 16px;
+      font: inherit;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--accent-strong);
+      color: #fff;
+      box-shadow: 0 12px 22px rgba(2, 21, 51, 0.18);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.7);
+      color: var(--ink);
+      border: 1px solid rgba(59, 114, 156, 0.12);
+    }
+
+    .section {
+      margin-bottom: 20px;
+      padding: 20px;
+      border-radius: 24px;
+      border: 1px solid rgba(59, 114, 156, 0.1);
+      background: linear-gradient(180deg, rgba(255,255,255,0.65), rgba(255,255,255,0.48));
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .section-number {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      background: rgba(59, 114, 156, 0.14);
+      color: var(--accent-strong);
+    }
+
+    .section-header p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .section-badge {
+      font-size: 12px;
+      color: var(--muted);
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(59, 114, 156, 0.08);
+    }
+
+    .fields {
+      display: grid;
+      gap: 16px;
+    }
+
+    .field.two-col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .label-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .field-note {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid rgba(59, 114, 156, 0.16);
+      border-radius: 16px;
+      padding: 14px 16px;
+      font: inherit;
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.88);
+      outline: none;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+    }
+
+    textarea {
+      min-height: 132px;
+      resize: vertical;
+      line-height: 1.8;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: rgba(59, 114, 156, 0.7);
+      box-shadow: 0 0 0 4px rgba(59, 114, 156, 0.11);
+      background: #fff;
+    }
+
+    .choice-grid,
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+    }
+
+    .choice,
+    .check {
+      position: relative;
+    }
+
+    .choice input,
+    .check input {
+      position: absolute;
+      opacity: 0;
+      inset: 0;
+    }
+
+    .choice span,
+    .check span {
+      display: block;
+      padding: 14px 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(59, 114, 156, 0.14);
+      background: rgba(255, 255, 255, 0.76);
+      text-align: center;
+      transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+    }
+
+    .choice input:checked + span,
+    .check input:checked + span {
+      border-width: 2px;
+      border-color: rgba(59, 114, 156, 0.7);
+      background: rgba(59, 114, 156, 0.12);
+      transform: translateY(-1px);
+    }
+
+    .footer-note {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .bottom-actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 18px;
+    }
+
+    .bottom-actions .btn-primary {
+      min-width: 280px;
+      padding: 16px 28px;
+      font-size: 18px;
+      font-weight: 800;
+      border-radius: 18px;
+    }
+
+    .toast {
+      position: fixed;
+      left: 20px;
+      bottom: 20px;
+      background: rgba(31, 27, 24, 0.92);
+      color: #fff;
+      padding: 12px 16px;
+      border-radius: 14px;
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      pointer-events: none;
+      max-width: calc(100% - 40px);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      .summary {
+        position: static;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .shell {
+        width: min(100% - 18px, 100%);
+        margin: 12px auto 18px;
+        gap: 14px;
+      }
+
+      .panel,
+      .summary {
+        border-radius: 20px;
+      }
+
+      .panel {
+        padding: 18px;
+      }
+
+      .summary {
+        padding: 18px;
+      }
+
+      .topbar,
+      .section-header,
+      .label-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .field.two-col {
+        grid-template-columns: 1fr;
+      }
+
+      .actions {
+        width: 100%;
+      }
+
+      .actions button {
+        flex: 1 1 100%;
+      }
+
+      .bottom-actions {
+        justify-content: stretch;
+      }
+
+      .bottom-actions button {
+        width: 100%;
+      }
+    }
+
+    @page {
+      size: auto;
+      margin: 8mm;
+    }
+
+    @media print {
+      html,
+      body {
+        background: #fff !important;
+      }
+
+      body {
+        min-height: auto;
+      }
+
+      body::before,
+      .summary,
+      .actions,
+      .bottom-actions,
+      .toast {
+        display: none !important;
+      }
+
+      .shell {
+        width: 100%;
+        margin: 0;
+        display: block;
+      }
+
+      .panel {
+        background: #fff;
+        border: 0;
+        box-shadow: none;
+        padding: 0;
+      }
+
+      .topbar {
+        margin-bottom: 10px;
+      }
+
+      .brand-logo {
+        width: 160px;
+        margin-bottom: 10px;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+
+      #questionnaire {
+        display: block;
+      }
+
+      .section {
+        margin-bottom: 10px;
+        padding: 14px;
+        border-radius: 14px;
+        break-inside: auto;
+        background: #fff;
+      }
+
+      .section-header {
+        margin-bottom: 10px;
+      }
+
+      .section-number {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        font-size: 14px;
+      }
+
+      .section-badge,
+      .field-note,
+      .preview,
+      .lead,
+      .stats,
+      .progress-wrap,
+      .eyebrow {
+        display: none !important;
+      }
+
+      .fields {
+        gap: 10px;
+      }
+
+      .field.two-col {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+
+      label {
+        margin-bottom: 4px;
+        font-size: 12px;
+      }
+
+      input[type="text"],
+      input[type="date"],
+      select,
+      textarea {
+        border-radius: 10px;
+        padding: 8px 10px;
+        font-size: 12px;
+      }
+
+      textarea {
+        min-height: 72px;
+      }
+
+      .choice span,
+      .check span {
+        padding: 8px;
+        border-radius: 10px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="summary">
+      <div class="eyebrow">ملخص مبادرة تفاعلي</div>
+      <h1>نموذج من صفحة واحدة</h1>
+      <p class="lead">صفحة واحدة تجمع 11 سؤالا بصيغة واضحة وسريعة التعبئة، مع حفظ تلقائي ومعاينة مختصرة يمكن نسخها.</p>
+
+      <div class="progress-wrap">
+        <div class="progress-labels">
+          <span>نسبة الإكمال</span>
+          <strong id="progressText">0%</strong>
+        </div>
+        <div class="progress-track">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <strong id="answeredCount">0</strong>
+          <span>إجابات مكتملة</span>
+        </div>
+        <div class="stat">
+          <strong>11</strong>
+          <span>إجمالي الأسئلة</span>
+        </div>
+      </div>
+
+      <div class="preview">
+        <h3>معاينة سريعة</h3>
+        <div class="preview-list" id="previewList">
+          <p class="preview-empty">ستظهر هنا أهم الإجابات أثناء الكتابة.</p>
+        </div>
+      </div>
+    </aside>
+
+    <main class="panel">
+      <div class="topbar">
+        <div>
+          <img class="brand-logo" src="SVG/Asset 3.svg" alt="Logo">
+          <h2><span class="title-main">نموذج داخلي</span><br>طلب خدمات التسويق</h2>
+        </div>
+
+        <div class="actions">
+          <button class="btn-secondary" type="button" id="resetForm">مسح البيانات</button>
+        </div>
+      </div>
+
+      <form id="questionnaire">
+        <section class="section">
+          <div class="section-header">
+            <div class="section-title">
+              <div class="section-number">1</div>
+              <div>
+                <h3>الأساسيات</h3>
+                <p>اسم المشروع والخلفية المختصرة.</p>
+              </div>
+            </div>
+            <div class="section-badge">سؤالان</div>
+          </div>
+          <div class="fields">
+            <div class="field">
+              <label for="projectName">1. اسم المشروع والشركة التابعة</label>
+              <input id="projectName" name="projectName" type="text" placeholder="مثال: مشروع تطوير المرافق - شركة مرافد" required>
+            </div>
+            <div class="field">
+              <div class="label-row">
+                <label for="projectBackground">2. ما هو المشروع؟ ولماذا نقوم به الآن؟</label>
+                <span class="field-note">خلفية المشروع</span>
+              </div>
+              <textarea id="projectBackground" name="projectBackground" placeholder="اكتب وصفا مختصرا يوضح فكرة المشروع وسبب إطلاقه في الوقت الحالي." required></textarea>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <div class="section-title">
+              <div class="section-number">2</div>
+              <div>
+                <h3>المواعيد</h3>
+                <p>الجدول الزمني والمرحلة الحالية.</p>
+              </div>
+            </div>
+            <div class="section-badge">سؤالان</div>
+          </div>
+          <div class="fields">
+            <div class="field two-col">
+              <div>
+                <label for="contractDate">3. تاريخ توقيع العقد</label>
+                <input id="contractDate" name="contractDate" type="date">
+              </div>
+              <div>
+                <label for="startDate">تاريخ انطلاق المشروع</label>
+                <input id="startDate" name="startDate" type="date">
+              </div>
+              <div>
+                <label for="endDate">تاريخ انتهاء المشروع</label>
+                <input id="endDate" name="endDate" type="date">
+              </div>
+            </div>
+            <div class="field">
+              <div class="label-row">
+                <label>4. المرحلة الحالية</label>
+                <span class="field-note">اختر واحدة</span>
+              </div>
+              <div class="choice-grid">
+                <label class="choice"><input type="radio" name="projectStage" value="تشخيص"><span>تشخيص</span></label>
+                <label class="choice"><input type="radio" name="projectStage" value="تحديد"><span>تحديد</span></label>
+                <label class="choice"><input type="radio" name="projectStage" value="تصميم"><span>تصميم</span></label>
+                <label class="choice"><input type="radio" name="projectStage" value="تنفيذ"><span>تنفيذ</span></label>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <div class="section-title">
+              <div class="section-number">3</div>
+              <div>
+                <h3>الأهداف</h3>
+                <p>الركيزة والأثر الاستراتيجي.</p>
+              </div>
+            </div>
+            <div class="section-badge">3 أسئلة</div>
+          </div>
+          <div class="fields">
+            <div class="field">
+              <div class="label-row">
+                <label for="goalPillar">5. ما هو هدفنا؟</label>
+                <span class="field-note">اختر الركيزة المناسبة</span>
+              </div>
+              <select id="goalPillar" name="goalPillar" required>
+                <option value="">اختر الركيزة</option>
+                <option value="تطوير بيئة">تطوير بيئة</option>
+                <option value="تمكين قطاع">تمكين قطاع</option>
+                <option value="الارتقاء بالمدينة">الارتقاء بالمدينة</option>
+                <option value="خدمة المواطن">خدمة المواطن</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="strategicImpact">6. كيف سيجعل هذا المشروع حياة سكان الرياض أفضل أو يدعم اقتصاد المدينة؟</label>
+              <textarea id="strategicImpact" name="strategicImpact" placeholder="اشرح الأثر المتوقع بشكل مباشر وواضح." required></textarea>
+            </div>
+            <div class="field">
+              <label for="keyMessage">7. ما هي المعلومة الواحدة التي تريد أن يتذكرها الناس عن هذا المشروع؟</label>
+              <textarea id="keyMessage" name="keyMessage" placeholder="اكتب الرسالة الأساسية التي يجب أن تبقى في ذهن الجمهور." required></textarea>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <div class="section-title">
+              <div class="section-number">4</div>
+              <div>
+                <h3>الرسائل</h3>
+                <p>حقائق داعمة تبرز نجاح المبادرة.</p>
+              </div>
+            </div>
+            <div class="section-badge">سؤال واحد</div>
+          </div>
+          <div class="fields">
+            <div class="field">
+              <label for="supportingFacts">8. قدم 2-3 حقائق تثبت نجاح المشروع</label>
+              <textarea id="supportingFacts" name="supportingFacts" placeholder="مثال: عدد المستفيدين، نسبة الإنجاز، المواصفات التقنية، قيمة التوفير..." required></textarea>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <div class="section-title">
+              <div class="section-number">5</div>
+              <div>
+                <h3>التنفيذ الإعلامي</h3>
+                <p>الاحتياج الإعلامي والترويج والمواد المتوفرة.</p>
+              </div>
+            </div>
+            <div class="section-badge">3 أسئلة</div>
+          </div>
+          <div class="fields">
+            <div class="field">
+              <div class="label-row">
+                <label>9. هل يتطلب المشروع دعما من العلاقات العامة؟</label>
+                <span class="field-note">خبر صحفي أو توقيع أو متحدث رسمي</span>
+              </div>
+              <div class="choice-grid">
+                <label class="choice"><input type="radio" name="prSupport" value="نعم"><span>نعم</span></label>
+                <label class="choice"><input type="radio" name="prSupport" value="لا"><span>لا</span></label>
+                <label class="choice"><input type="radio" name="prSupport" value="غير محدد"><span>غير محدد</span></label>
+              </div>
+            </div>
+            <div class="field">
+              <div class="label-row">
+                <label>10. هل تحتاج إلى إعلانات ممولة على منصات التواصل؟</label>
+                 <span class="field-note">إعلانات ممولة على وسائل التواصل الاجتماعي</span>
+              </div>
+              <div class="choice-grid">
+                <label class="choice"><input type="radio" name="paidPromotion" value="نعم"><span>نعم</span></label>
+                <label class="choice"><input type="radio" name="paidPromotion" value="لا"><span>لا</span></label>
+                <label class="choice"><input type="radio" name="paidPromotion" value="بحاجة لدراسة"><span>بحاجة لدراسة</span></label>
+              </div>
+            </div>
+            <div class="field">
+              <div class="label-row">
+                <label>11. ما المواد المتوفرة حاليا للنشر؟</label>
+                <span class="field-note">يمكن اختيار أكثر من عنصر</span>
+              </div>
+              <div class="checkbox-grid">
+                <label class="check"><input type="checkbox" name="assets" value="صور"><span>صور</span></label>
+                <label class="check"><input type="checkbox" name="assets" value="فيديوهات"><span>فيديوهات</span></label>
+                <label class="check"><input type="checkbox" name="assets" value="تصاميم هندسية"><span>تصاميم هندسية</span></label>
+                <label class="check"><input type="checkbox" name="assets" value="عروض تقديمية"><span>عروض تقديمية</span></label>
+                <label class="check"><input type="checkbox" name="assets" value="لا توجد مواد حاليا"><span>لا توجد مواد حاليا</span></label>
+              </div>
+            </div>
+            <div class="field">
+              <label for="assetsNotes">ملاحظات إضافية</label>
+              <textarea id="assetsNotes" name="assetsNotes" placeholder="أضف أي تفاصيل تساعد فريق المحتوى أو العلاقات العامة."></textarea>
+            </div>
+          </div>
+        </section>
+      </form>
+
+      <div class="bottom-actions">
+        <button class="btn-primary" type="button" id="savePdf">حفظ كملف PDF</button>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const form = document.getElementById('questionnaire');
+    const progressBar = document.getElementById('progressBar');
+    const progressText = document.getElementById('progressText');
+    const answeredCount = document.getElementById('answeredCount');
+    const previewList = document.getElementById('previewList');
+    const resetForm = document.getElementById('resetForm');
+    const savePdf = document.getElementById('savePdf');
+    const toast = document.getElementById('toast');
+    const storageKey = 'initiative-questionnaire-v1';
+
+    const fieldLabels = {
+      projectName: 'اسم المشروع والشركة التابعة',
+      projectBackground: 'خلفية المشروع',
+      timeline: 'الجدول الزمني',
+      projectStage: 'المرحلة الحالية',
+      goalPillar: 'الهدف',
+      strategicImpact: 'الأثر الاستراتيجي',
+      keyMessage: 'الرسالة الأهم',
+      supportingFacts: 'حقائق تدعم الرسالة',
+      prSupport: 'دعم العلاقات العامة',
+      paidPromotion: 'الترويج الممول',
+      assets: 'المواد المتوفرة',
+      assetsNotes: 'ملاحظات إضافية'
+    };
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+
+    function getRadioValue(name) {
+      const checked = form.querySelector(`input[name="${name}"]:checked`);
+      return checked ? checked.value : '';
+    }
+
+    function getCheckboxValues(name) {
+      return Array.from(form.querySelectorAll(`input[name="${name}"]:checked`)).map((input) => input.value);
+    }
+
+    function getTimelineValue() {
+      const contract = form.contractDate.value;
+      const start = form.startDate.value;
+      const end = form.endDate.value;
+      const parts = [];
+      if (contract) parts.push(`توقيع العقد: ${contract}`);
+      if (start) parts.push(`بداية المشروع: ${start}`);
+      if (end) parts.push(`نهاية المشروع: ${end}`);
+      return parts.join(' | ');
+    }
+
+    function getState() {
+      return {
+        projectName: form.projectName.value.trim(),
+        projectBackground: form.projectBackground.value.trim(),
+        contractDate: form.contractDate.value,
+        startDate: form.startDate.value,
+        endDate: form.endDate.value,
+        projectStage: getRadioValue('projectStage'),
+        goalPillar: form.goalPillar.value,
+        strategicImpact: form.strategicImpact.value.trim(),
+        keyMessage: form.keyMessage.value.trim(),
+        supportingFacts: form.supportingFacts.value.trim(),
+        prSupport: getRadioValue('prSupport'),
+        paidPromotion: getRadioValue('paidPromotion'),
+        assets: getCheckboxValues('assets'),
+        assetsNotes: form.assetsNotes.value.trim()
+      };
+    }
+
+    function getAnsweredQuestions(state) {
+      const answers = [
+        state.projectName,
+        state.projectBackground,
+        getTimelineValue(),
+        state.projectStage,
+        state.goalPillar,
+        state.strategicImpact,
+        state.keyMessage,
+        state.supportingFacts,
+        state.prSupport,
+        state.paidPromotion,
+        state.assets.length ? state.assets.join('، ') : state.assetsNotes
+      ];
+      return answers.filter(Boolean).length;
+    }
+
+    function updateProgress() {
+      const state = getState();
+      const answered = getAnsweredQuestions(state);
+      const percent = Math.round((answered / 11) * 100);
+      progressBar.style.width = `${percent}%`;
+      progressText.textContent = `${percent}%`;
+      answeredCount.textContent = answered;
+
+      const previewEntries = [
+        ['projectName', state.projectName],
+        ['timeline', getTimelineValue()],
+        ['goalPillar', state.goalPillar],
+        ['keyMessage', state.keyMessage],
+        ['assets', state.assets.length ? state.assets.join('، ') : '']
+      ].filter(([, value]) => value);
+
+      if (!previewEntries.length) {
+        previewList.innerHTML = '<p class="preview-empty">ستظهر هنا أهم الإجابات أثناء الكتابة.</p>';
+      } else {
+        previewList.innerHTML = previewEntries.map(([key, value]) => `\n          <div class="preview-item">\n            <strong>${fieldLabels[key]}</strong>\n            <p>${value}</p>\n          </div>\n        `).join('');
+      }
+
+      localStorage.setItem(storageKey, JSON.stringify(state));
+    }
+
+    function fillState(state) {
+      if (!state) return;
+      form.projectName.value = state.projectName || '';
+      form.projectBackground.value = state.projectBackground || '';
+      form.contractDate.value = state.contractDate || '';
+      form.startDate.value = state.startDate || '';
+      form.endDate.value = state.endDate || '';
+      form.goalPillar.value = state.goalPillar || '';
+      form.strategicImpact.value = state.strategicImpact || '';
+      form.keyMessage.value = state.keyMessage || '';
+      form.supportingFacts.value = state.supportingFacts || '';
+      form.assetsNotes.value = state.assetsNotes || '';
+
+      ['projectStage', 'prSupport', 'paidPromotion'].forEach((name) => {
+        const value = state[name];
+        if (!value) return;
+        const input = form.querySelector(`input[name="${name}"][value="${value}"]`);
+        if (input) input.checked = true;
+      });
+
+      if (Array.isArray(state.assets)) {
+        state.assets.forEach((value) => {
+          const input = form.querySelector(`input[name="assets"][value="${value}"]`);
+          if (input) input.checked = true;
+        });
+      }
+    }
+
+    function buildPrintDocument() {
+      const panel = document.querySelector('.panel');
+      const clone = panel.cloneNode(true);
+      const sourceFields = panel.querySelectorAll('input, textarea, select');
+      const cloneFields = clone.querySelectorAll('input, textarea, select');
+
+      clone.querySelector('.actions')?.remove();
+      clone.querySelector('.bottom-actions')?.remove();
+
+      clone.querySelectorAll('img').forEach((img, index) => {
+        const sourceImg = panel.querySelectorAll('img')[index];
+        if (sourceImg) {
+          img.src = sourceImg.src;
+        }
+      });
+
+      cloneFields.forEach((field, index) => {
+        const source = sourceFields[index];
+        if (!source) return;
+
+        if (field instanceof HTMLTextAreaElement) {
+          field.textContent = source.value;
+          field.value = source.value;
+          return;
+        }
+
+        if (field instanceof HTMLSelectElement) {
+          field.value = source.value;
+          Array.from(field.options).forEach((option) => {
+            option.selected = option.value === source.value;
+          });
+          return;
+        }
+
+        if (field instanceof HTMLInputElement) {
+          if (field.type === 'checkbox' || field.type === 'radio') {
+            field.checked = source.checked;
+            if (source.checked) {
+              field.setAttribute('checked', 'checked');
+            } else {
+              field.removeAttribute('checked');
+            }
+            return;
+          }
+
+          field.value = source.value;
+          field.setAttribute('value', source.value);
+        }
+      });
+
+      const measureWrap = document.createElement('div');
+      measureWrap.style.position = 'fixed';
+      measureWrap.style.left = '-99999px';
+      measureWrap.style.top = '0';
+      measureWrap.style.width = '194mm';
+      measureWrap.style.padding = '8mm';
+      measureWrap.style.background = '#fff';
+      measureWrap.style.boxSizing = 'border-box';
+      measureWrap.appendChild(clone);
+      document.body.appendChild(measureWrap);
+
+      const contentHeightMm = Math.max(160, Math.ceil((measureWrap.getBoundingClientRect().height * 25.4) / 96) - 6);
+      document.body.removeChild(measureWrap);
+
+      const baseStyles = document.querySelector('style').textContent;
+
+      return `<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تحديث نموذج ملخص المبادرة</title>
+  <style>
+    ${baseStyles}
+    @page { size: 210mm ${contentHeightMm}mm; margin: 0; }
+    html, body { background: #fff !important; height: auto; overflow: hidden; }
+    body { min-height: auto; margin: 0; }
+    body::before, .summary, .actions, .bottom-actions, .toast { display: none !important; }
+    .shell { width: 100%; margin: 0; display: block; padding: 8mm; box-sizing: border-box; break-after: avoid; page-break-after: avoid; }
+    .panel { background: #fff; border: 0; box-shadow: none; padding: 0; break-after: avoid; page-break-after: avoid; }
+    .topbar { margin-bottom: 10px; }
+    .brand-logo { width: 160px; margin-bottom: 10px; }
+    h2 { font-size: 24px; }
+    #questionnaire { display: block; }
+    .section { margin-bottom: 10px; padding: 14px; border-radius: 14px; break-inside: auto; background: #fff; }
+    .section-header { margin-bottom: 10px; }
+    .section-number { width: 28px; height: 28px; border-radius: 8px; font-size: 14px; }
+    .section-badge, .field-note, .preview, .lead, .stats, .progress-wrap, .eyebrow { display: none !important; }
+    .fields { gap: 10px; }
+    .field.two-col { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    label { margin-bottom: 4px; font-size: 12px; }
+    input[type="text"], input[type="date"], select, textarea { border-radius: 10px; padding: 8px 10px; font-size: 12px; }
+    textarea { min-height: 72px; }
+    .choice span, .check span { padding: 8px; border-radius: 10px; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    ${clone.outerHTML}
+  </div>
+</body>
+</html>`;
+    }
+
+    function printAsSinglePage() {
+      const printWindow = window.open('', '_blank', 'width=1200,height=900');
+      if (!printWindow) {
+        showToast('تعذر فتح نافذة الطباعة.');
+        return;
+      }
+
+      printWindow.document.open();
+      printWindow.document.write(buildPrintDocument());
+      printWindow.document.close();
+      printWindow.focus();
+
+      const triggerPrint = () => {
+        printWindow.print();
+        printWindow.close();
+      };
+
+      if (printWindow.document.fonts?.ready) {
+        printWindow.document.fonts.ready.then(triggerPrint);
+      } else {
+        printWindow.onload = triggerPrint;
+      }
+    }
+
+    form.addEventListener('input', updateProgress);
+    form.addEventListener('change', updateProgress);
+
+    resetForm.addEventListener('click', () => {
+      form.reset();
+      localStorage.removeItem(storageKey);
+      updateProgress();
+      showToast('تم مسح البيانات المحفوظة.');
+    });
+
+    savePdf.addEventListener('click', printAsSinglePage);
+
+    fillState(JSON.parse(localStorage.getItem(storageKey) || 'null'));
+    updateProgress();
+  </script>
+</body>
+</html>
