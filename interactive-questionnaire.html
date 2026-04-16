@@ -324,7 +324,7 @@
 
     .field.two-col {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
     }
 
@@ -636,7 +636,7 @@
       }
 
       .field.two-col {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 8px;
       }
 
@@ -1189,7 +1189,7 @@
     .section-number { width: 28px; height: 28px; border-radius: 8px; font-size: 14px; background: #d6e7f3; color: #134668; }
     .section-badge, .field-note, .preview, .lead, .stats, .progress-wrap, .eyebrow { display: none !important; }
     .fields { gap: 10px; }
-    .field.two-col { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .field.two-col { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
     label { margin-bottom: 4px; font-size: 12px; }
     input[type="text"], input[type="date"], select, textarea { border-radius: 10px; padding: 8px 10px; font-size: 12px; }
     textarea { min-height: 72px; }
