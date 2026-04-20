@@ -688,7 +688,7 @@
           <span>إجابات مكتملة</span>
         </div>
         <div class="stat">
-          <strong>19</strong>
+          <strong>14</strong>
           <span>إجمالي الأسئلة</span>
         </div>
       </div>
@@ -714,41 +714,39 @@
       </div>
 
       <form id="questionnaire">
+
+        <!-- Section 1: البيانات الأساسية -->
         <section class="section">
           <div class="section-header">
             <div class="section-title">
               <div class="section-number">1</div>
               <div>
-                <h3>الأساسيات</h3>
+                <h3>البيانات الأساسية</h3>
               </div>
             </div>
           </div>
           <div class="fields">
             <div class="field">
-              <label for="requestOwner">1. اسم صاحب الطلب</label>
-              <input id="requestOwner" name="requestOwner" type="text" required>
-            </div>
-            <div class="field">
-              <label for="departmentName">2. الإدارة / القسم</label>
+              <label for="departmentName">1. الإدارة / القسم</label>
               <input id="departmentName" name="departmentName" type="text" required>
             </div>
             <div class="field">
-              <label for="projectName">3. اسم المشروع</label>
-              <input id="projectName" name="projectName" type="text" placeholder="مثال: مشروع تطوير المرافق" required>
+              <label for="projectName">2. اسم المشروع/المبادرة</label>
+              <input id="projectName" name="projectName" type="text" placeholder="مثال: مشروع تطوير المرافق / مبادرة تمكين القطاع" required>
             </div>
             <div class="field">
-              <label for="companyName">4. اسم الشركة التابعة</label>
+              <label for="companyName">3. اسم الشركة التابعة</label>
               <input id="companyName" name="companyName" type="text" placeholder="مثال: شركة مرافد" required>
             </div>
             <div class="field">
               <div class="label-row">
-                <label for="projectBackground">5. ما هو المشروع؟ ولماذا نقوم به الآن و كيف يرتبط المشروع باستراتيجية الرياض القابضة ورؤيتها؟</label>
+                <label for="projectBackground">4. ما هو المشروع/المبادرة؟ ولماذا نقوم به الآن وكيف يرتبط باستراتيجية الرياض القابضة ورؤيتها؟</label>
               </div>
-              <textarea id="projectBackground" name="projectBackground" placeholder="اكتب وصفا مختصرا يوضح فكرة المشروع وسبب إطلاقه في الوقت الحالي." required></textarea>
+              <textarea id="projectBackground" name="projectBackground" placeholder="اكتب وصفاً مختصراً يوضح فكرة المشروع أو المبادرة وسبب إطلاقها في الوقت الحالي." required></textarea>
             </div>
             <div class="field">
               <div class="label-row">
-                <label for="supportedSector">6. ما هي المنظومة التي يدعمها هذا المشروع؟</label>
+                <label for="supportedSector">5. ما هي المنظومة التي يدعمها هذا المشروع/المبادرة؟</label>
               </div>
               <select id="supportedSector" name="supportedSector" required>
                 <option value="">أختر المنظومة</option>
@@ -760,143 +758,34 @@
               </select>
             </div>
             <div class="field">
-              <label>7. هل يتطلب المشروع تنظيم حفل تدشين أو توقيع؟</label>
+              <label>6. هل يتطلب المشروع/المبادرة تنظيم حفل تدشين أو توقيع؟</label>
               <div class="choice-grid">
                 <label class="choice"><input type="radio" name="launchEvent" value="نعم"><span>نعم</span></label>
                 <label class="choice"><input type="radio" name="launchEvent" value="لا"><span>لا</span></label>
               </div>
             </div>
             <div class="field">
-              <label>8. هل المطلوب توفير تغطية تصوير فوتوغرافي أو فيديو؟</label>
+              <label>7. هل المطلوب توفير تغطية تصوير فوتوغرافي أو فيديو؟</label>
               <div class="choice-grid">
                 <label class="choice"><input type="radio" name="mediaCoverage" value="نعم"><span>نعم</span></label>
                 <label class="choice"><input type="radio" name="mediaCoverage" value="لا"><span>لا</span></label>
               </div>
             </div>
-          </div>
-        </section>
-
-        <section class="section">
-          <div class="section-header">
-            <div class="section-title">
-              <div class="section-number">2</div>
-              <div>
-                <h3>المواعيد</h3>
-              </div>
-            </div>
-          </div>
-          <div class="fields">
-            <div class="field two-col">
-              <div>
-                <label for="contractDate">9. تاريخ توقيع العقد</label>
-                <input id="contractDate" name="contractDate" type="date">
-              </div>
-              <div>
-                <label for="startDate">تاريخ الاعلان المتوقع عن المشروع</label>
-                <input id="startDate" name="startDate" type="date">
-              </div>
-            </div>
             <div class="field">
               <div class="label-row">
-                <label>10. المرحلة الحالية</label>
+                <label>8. المرحلة الحالية للمشروع/المبادرة</label>
                 <span class="field-note">اختر واحدة</span>
               </div>
               <div class="choice-grid">
-                 <label class="choice"><input type="radio" name="projectStage" value="التخطيط"><span>التخطيط</span></label>
-                 <label class="choice"><input type="radio" name="projectStage" value="الاعتماد والموافق"><span>الاعتماد والموافق</span></label>
-                 <label class="choice"><input type="radio" name="projectStage" value="التصميم"><span>التصميم</span></label>
-                 <label class="choice"><input type="radio" name="projectStage" value="التنفيذ"><span>التنفيذ</span></label>
+                <label class="choice"><input type="radio" name="projectStage" value="التخطيط"><span>التخطيط</span></label>
+                <label class="choice"><input type="radio" name="projectStage" value="الاعتماد والموافق"><span>الاعتماد والموافق</span></label>
+                <label class="choice"><input type="radio" name="projectStage" value="التصميم"><span>التصميم</span></label>
+                <label class="choice"><input type="radio" name="projectStage" value="التنفيذ"><span>التنفيذ</span></label>
               </div>
             </div>
-          </div>
-        </section>
-
-        <section class="section">
-          <div class="section-header">
-            <div class="section-title">
-              <div class="section-number">3</div>
-              <div>
-                <h3>الأهداف</h3>
-              </div>
-            </div>
-          </div>
-          <div class="fields">
             <div class="field">
               <div class="label-row">
-                <label for="goalPillar">11. ما هو هدفنا؟</label>
-                <span class="field-note">اختر الركيزة المناسبة</span>
-              </div>
-              <select id="goalPillar" name="goalPillar" required>
-                <option value="">اختر الركيزة</option>
-                <option value="تطوير بيئة">تطوير بيئة</option>
-                <option value="تمكين قطاع">تمكين قطاع</option>
-                <option value="الارتقاء بالمدينة">الارتقاء بالمدينة</option>
-                <option value="خدمة المواطن">خدمة المواطن</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="strategicImpact">12. كيف سيجعل هذا المشروع حياة سكان الرياض أفضل أو يدعم اقتصاد المدينة؟</label>
-              <textarea id="strategicImpact" name="strategicImpact" placeholder="اشرح الأثر المتوقع بشكل مباشر وواضح." required></textarea>
-            </div>
-          </div>
-        </section>
-
-        <section class="section">
-          <div class="section-header">
-            <div class="section-title">
-              <div class="section-number">4</div>
-              <div>
-                <h3>الرسائل</h3>
-              </div>
-            </div>
-          </div>
-          <div class="fields">
-            <div class="field">
-              <label for="keyMessage">13. ما هي المعلومة الأساسية التي ترتكز خطة التسويق على أساسها؟</label>
-              <textarea id="keyMessage" name="keyMessage" placeholder="اكتب الرسالة الأساسية التي يجب أن تبقى في ذهن الجمهور." required></textarea>
-            </div>
-            <div class="field">
-              <label for="supportingFacts">14. قدم 2-3 حقائق تثبت نجاح المشروع</label>
-              <textarea id="supportingFacts" name="supportingFacts" placeholder="قدم حقائق ومعلومات يمكن مشاركتها على المنصات التواصل من شأنها أن تدعم الرسالة الأساسية للحملة" required></textarea>
-            </div>
-          </div>
-        </section>
-
-        <section class="section">
-          <div class="section-header">
-            <div class="section-title">
-              <div class="section-number">5</div>
-              <div>
-                <h3>التنفيذ الإعلامي</h3>
-              </div>
-            </div>
-          </div>
-          <div class="fields">
-            <div class="field">
-              <div class="label-row">
-                <label>15. هل يتطلب المشروع دعما من العلاقات العامة؟</label>
-              </div>
-              <div class="choice-grid">
-                 <label class="choice"><input type="radio" name="prSupport" value="نعم"><span>نعم</span></label>
-                 <label class="choice"><input type="radio" name="prSupport" value="لا"><span>لا</span></label>
-                 <label class="choice"><input type="radio" name="prSupport" value="غير محدد"><span>غير محدد</span></label>
-                 <label class="choice"><input type="radio" name="prSupport" value="لا اعلم الرجاء الإفادة"><span>لا اعلم الرجاء الإفادة</span></label>
-               </div>
-             </div>
-            <div class="field">
-              <div class="label-row">
-                <label>16. هل تحتاج إلى إعلانات ممولة على منصات التواصل؟</label>
-              </div>
-              <div class="choice-grid">
-                 <label class="choice"><input type="radio" name="paidPromotion" value="نعم"><span>نعم</span></label>
-                 <label class="choice"><input type="radio" name="paidPromotion" value="لا"><span>لا</span></label>
-                 <label class="choice"><input type="radio" name="paidPromotion" value="بحاجة لدراسة"><span>بحاجة لدراسة</span></label>
-                 <label class="choice"><input type="radio" name="paidPromotion" value="لا اعلم الرجاء الإفادة"><span>لا اعلم الرجاء الإفادة</span></label>
-               </div>
-             </div>
-            <div class="field">
-              <div class="label-row">
-                <label>17. ما المواد المتوفرة حاليا للنشر؟</label>
+                <label>9. ما المواد المتوفرة حالياً للنشر؟</label>
                 <span class="field-note">يمكن اختيار أكثر من عنصر</span>
               </div>
               <div class="checkbox-grid">
@@ -908,20 +797,103 @@
               </div>
             </div>
             <div class="field">
-              <label for="partnerInfo">18. في حال وجود شراكة، ما هو اسم الشريك وما هي النبذة التعريفية لنشاطه؟</label>
-              <textarea id="partnerInfo" name="partnerInfo" placeholder="اذكر اسم الشريك ونبذة مختصرة عن نشاطه." required></textarea>
+              <label for="partnerInfo">10. في حال وجود شراكة، ما هو اسم الشريك وما هي النبذة التعريفية لنشاطه؟</label>
+              <textarea id="partnerInfo" name="partnerInfo" placeholder="اذكر اسم الشريك ونبذة مختصرة عن نشاطه."></textarea>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 2: الأهداف -->
+        <section class="section">
+          <div class="section-header">
+            <div class="section-title">
+              <div class="section-number">2</div>
+              <div>
+                <h3>الأهداف</h3>
+              </div>
+            </div>
+          </div>
+          <div class="fields">
+            <div class="field">
+              <div class="label-row">
+                <label for="goalPillar">11. ما هو الهدف الاستراتيجي الذي يحققه هذا المشروع/المبادرة؟</label>
+                <span class="field-note">اختر الركيزة الاستراتيجية المناسبة</span>
+              </div>
+              <select id="goalPillar" name="goalPillar" required>
+                <option value="">اختر الركيزة</option>
+                <option value="تطوير بيئة">تطوير بيئة — تحسين البنية التحتية والفضاءات العامة</option>
+                <option value="تمكين قطاع">تمكين قطاع — دعم قطاع اقتصادي محدد وتنميته</option>
+                <option value="الارتقاء بالمدينة">الارتقاء بالمدينة — رفع جودة الحياة وتعزيز مكانة الرياض</option>
+                <option value="خدمة المواطن">خدمة المواطن — تقديم خدمات مباشرة لسكان وزوار الرياض</option>
+              </select>
             </div>
             <div class="field">
-              <label for="brandVisibility">19. ما هو مستوى الظهور العلامي المطلوب لهذه الشراكة؟</label>
-              <input id="brandVisibility" name="brandVisibility" type="text" required>
-              <span class="field-note-pop">يُرجى تزويدنا بشعار الشريك (على أن يُرسل كملف مستقل عبر البريد الإلكتروني مع هذا النموذج).</span>
+              <label for="strategicImpact">12. كيف سيجعل هذا المشروع/المبادرة حياة سكان الرياض أفضل أو يدعم اقتصاد المدينة؟</label>
+              <textarea id="strategicImpact" name="strategicImpact" placeholder="اشرح الأثر المتوقع على المستفيدين أو على الاقتصاد بشكل مباشر وواضح." required></textarea>
             </div>
+          </div>
+        </section>
+
+        <!-- Section 3: الرسائل -->
+        <section class="section">
+          <div class="section-header">
+            <div class="section-title">
+              <div class="section-number">3</div>
+              <div>
+                <h3>الرسائل</h3>
+              </div>
+            </div>
+          </div>
+          <div class="fields">
             <div class="field">
-              <label for="assetsNotes">ملاحظات إضافية</label>
+              <label for="keyMessage">13. ما هي المعلومة الأساسية التي ترتكز خطة التسويق على أساسها؟</label>
+              <textarea id="keyMessage" name="keyMessage" placeholder="اكتب الرسالة الأساسية التي يجب أن تبقى في ذهن الجمهور." required></textarea>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 4: المواعيد (moved to last before additional comments) -->
+        <section class="section">
+          <div class="section-header">
+            <div class="section-title">
+              <div class="section-number">4</div>
+              <div>
+                <h3>المواعيد</h3>
+              </div>
+            </div>
+          </div>
+          <div class="fields">
+            <div class="field two-col">
+              <div>
+                <label for="contractDate">14. تاريخ توقيع العقد</label>
+                <input id="contractDate" name="contractDate" type="date">
+              </div>
+              <div>
+                <label for="startDate">تاريخ الإعلان المتوقع عن المشروع/المبادرة</label>
+                <input id="startDate" name="startDate" type="date">
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 5: ملاحظات إضافية -->
+        <section class="section">
+          <div class="section-header">
+            <div class="section-title">
+              <div class="section-number">5</div>
+              <div>
+                <h3>ملاحظات إضافية</h3>
+              </div>
+            </div>
+          </div>
+          <div class="fields">
+            <div class="field">
+              <label for="assetsNotes">أضف أي معلومات أو تفاصيل إضافية تساعد فريق التسويق على فهم المشروع/المبادرة بشكل أفضل</label>
               <textarea id="assetsNotes" name="assetsNotes" placeholder="أضف أي تفاصيل تساعد فريق المحتوى أو العلاقات العامة."></textarea>
             </div>
           </div>
         </section>
+
       </form>
 
       <div class="bottom-actions">
@@ -941,28 +913,23 @@
     const resetForm = document.getElementById('resetForm');
     const savePdf = document.getElementById('savePdf');
     const toast = document.getElementById('toast');
-    const storageKey = 'initiative-questionnaire-v1';
+    const storageKey = 'initiative-questionnaire-v2';
 
     const fieldLabels = {
-      requestOwner: 'اسم صاحب الطلب',
       departmentName: 'الإدارة / القسم',
-      projectName: 'اسم المشروع',
+      projectName: 'اسم المشروع/المبادرة',
       companyName: 'اسم الشركة التابعة',
-      projectBackground: 'خلفية المشروع',
-      supportedSector: 'القطاع المدعوم',
+      projectBackground: 'نبذة عن المشروع/المبادرة',
+      supportedSector: 'المنظومة المدعومة',
       launchEvent: 'حفل التدشين أو التوقيع',
       mediaCoverage: 'التغطية الفوتوغرافية أو الفيديو',
-      timeline: 'الجدول الزمني',
-      projectStage: 'المرحلة الحالية',
-      goalPillar: 'الهدف',
-      strategicImpact: 'الأثر الاستراتيجي',
-      keyMessage: 'الرسالة الأهم',
-      supportingFacts: 'حقائق تدعم الرسالة',
-      prSupport: 'دعم العلاقات العامة',
-      paidPromotion: 'الترويج الممول',
+      projectStage: 'المرحلة الحالية للمشروع/المبادرة',
       assets: 'المواد المتوفرة',
       partnerInfo: 'معلومات الشريك',
-      brandVisibility: 'مستوى الظهور العلامي',
+      goalPillar: 'الهدف الاستراتيجي',
+      strategicImpact: 'الأثر المتوقع',
+      keyMessage: 'الرسالة الأساسية',
+      timeline: 'المواعيد',
       assetsNotes: 'ملاحظات إضافية'
     };
 
@@ -987,13 +954,12 @@
       const start = form.startDate.value;
       const parts = [];
       if (contract) parts.push(`توقيع العقد: ${contract}`);
-      if (start) parts.push(`بداية المشروع: ${start}`);
+      if (start) parts.push(`الإعلان المتوقع: ${start}`);
       return parts.join(' | ');
     }
 
     function getState() {
       return {
-        requestOwner: form.requestOwner.value.trim(),
         departmentName: form.departmentName.value.trim(),
         projectName: form.projectName.value.trim(),
         companyName: form.companyName.value.trim(),
@@ -1001,25 +967,20 @@
         supportedSector: form.supportedSector.value,
         launchEvent: getRadioValue('launchEvent'),
         mediaCoverage: getRadioValue('mediaCoverage'),
-        contractDate: form.contractDate.value,
-        startDate: form.startDate.value,
         projectStage: getRadioValue('projectStage'),
+        assets: getCheckboxValues('assets'),
+        partnerInfo: form.partnerInfo.value.trim(),
         goalPillar: form.goalPillar.value,
         strategicImpact: form.strategicImpact.value.trim(),
         keyMessage: form.keyMessage.value.trim(),
-        supportingFacts: form.supportingFacts.value.trim(),
-        prSupport: getRadioValue('prSupport'),
-        paidPromotion: getRadioValue('paidPromotion'),
-        assets: getCheckboxValues('assets'),
-        partnerInfo: form.partnerInfo.value.trim(),
-        brandVisibility: form.brandVisibility.value.trim(),
+        contractDate: form.contractDate.value,
+        startDate: form.startDate.value,
         assetsNotes: form.assetsNotes.value.trim()
       };
     }
 
     function getAnsweredQuestions(state) {
       const answers = [
-        state.requestOwner,
         state.departmentName,
         state.projectName,
         state.companyName,
@@ -1027,18 +988,13 @@
         state.supportedSector,
         state.launchEvent,
         state.mediaCoverage,
-        getTimelineValue(),
         state.projectStage,
+        state.assets.length ? state.assets.join('، ') : '',
+        state.partnerInfo,
         state.goalPillar,
         state.strategicImpact,
         state.keyMessage,
-        state.supportingFacts,
-        state.prSupport,
-        state.paidPromotion,
-        state.assets.length ? state.assets.join('، ') : '',
-        state.partnerInfo,
-        state.brandVisibility,
-        state.assetsNotes
+        getTimelineValue()
       ];
       return answers.filter(Boolean).length;
     }
@@ -1046,7 +1002,7 @@
     function updateProgress() {
       const state = getState();
       const answered = getAnsweredQuestions(state);
-      const percent = Math.round((answered / 19) * 100);
+      const percent = Math.round((answered / 14) * 100);
       progressBar.style.width = `${percent}%`;
       progressText.textContent = `${percent}%`;
       answeredCount.textContent = answered;
@@ -1058,14 +1014,18 @@
         ['timeline', getTimelineValue()],
         ['goalPillar', state.goalPillar],
         ['keyMessage', state.keyMessage],
-        ['assets', state.assets.length ? state.assets.join('، ') : ''],
-        ['brandVisibility', state.brandVisibility]
+        ['assets', state.assets.length ? state.assets.join('، ') : '']
       ].filter(([, value]) => value);
 
       if (!previewEntries.length) {
         previewList.innerHTML = '<p class="preview-empty">ستظهر هنا أهم الإجابات أثناء الكتابة.</p>';
       } else {
-        previewList.innerHTML = previewEntries.map(([key, value]) => `\n          <div class="preview-item">\n            <strong>${fieldLabels[key]}</strong>\n            <p>${value}</p>\n          </div>\n        `).join('');
+        previewList.innerHTML = previewEntries.map(([key, value]) => `
+          <div class="preview-item">
+            <strong>${fieldLabels[key]}</strong>
+            <p>${value}</p>
+          </div>
+        `).join('');
       }
 
       localStorage.setItem(storageKey, JSON.stringify(state));
@@ -1073,7 +1033,6 @@
 
     function fillState(state) {
       if (!state) return;
-      form.requestOwner.value = state.requestOwner || '';
       form.departmentName.value = state.departmentName || '';
       form.projectName.value = state.projectName || '';
       form.companyName.value = state.companyName || '';
@@ -1084,12 +1043,10 @@
       form.goalPillar.value = state.goalPillar || '';
       form.strategicImpact.value = state.strategicImpact || '';
       form.keyMessage.value = state.keyMessage || '';
-      form.supportingFacts.value = state.supportingFacts || '';
       form.partnerInfo.value = state.partnerInfo || '';
-      form.brandVisibility.value = state.brandVisibility || '';
       form.assetsNotes.value = state.assetsNotes || '';
 
-      ['launchEvent', 'mediaCoverage', 'projectStage', 'prSupport', 'paidPromotion'].forEach((name) => {
+      ['launchEvent', 'mediaCoverage', 'projectStage'].forEach((name) => {
         const value = state[name];
         if (!value) return;
         const input = form.querySelector(`input[name="${name}"][value="${value}"]`);
